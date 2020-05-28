@@ -72,10 +72,17 @@ class AzureAdOAuthenticator(OAuthenticator):
         return 'https://login.microsoftonline.com/{0}/oauth2/token'.format(self.tenant_id)
 
     async def authenticate(self, handler, data=None):
+        app_log.info("AzureAdOAuthenticator")
+        attrs = vars(self)
+        for item in attrs.items():
+            app_log.info(item)
         app_log.info("checking what is in handler")
-        app_log.info(self)
+        attrs = vars(handler)
+        for item in attrs.items():
+             app_log.info(item)
         app_log.info(handler.get_argument("state"))
         code = handler.get_argument("code")
+        app_log.info(handler.get_argument("code"))
         http_client = AsyncHTTPClient()
 
         params = dict(
