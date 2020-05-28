@@ -104,6 +104,7 @@ class OAuthLoginHandler(OAuth2Mixin, BaseHandler):
         self.log.info('OAuth redirect: %r', redirect_uri)
         state = self.get_state()
         self.set_state_cookie(state)
+        self.log.info('state from ouath2.py: %r', state)
         extra_params['state'] = state
         self.authorize_redirect(
             redirect_uri=redirect_uri,
