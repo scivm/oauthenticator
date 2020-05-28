@@ -114,6 +114,8 @@ class AzureAdOAuthenticator(OAuthenticator):
 
         app_log.info("Response %s", resp_json)
         app_log.info(resp.headers)
+        app_log.info("resp.effective_url")
+        app_log.info(resp.effective_url)
 
         access_token = resp_json['access_token']
 
