@@ -17,8 +17,18 @@ from traitlets import Unicode, default
 
 from .oauth2 import OAuthLoginHandler, OAuthenticator
 
+class AzureAdOAuthLoginHandler(OAuthLoginHandler):
+    def get_state(self):
+        app_log.info("in custom AzureAdOAuthLoginHandler")
+        if self._state is None:
+            self._state = _serialize_state(
+                {'state_id': uuid.uuid4().hex, 'next_url': next_url}
+            )
+        app_log.info(self._state)
+        return self._state
 
 class AzureAdOAuthenticator(OAuthenticator):
+    login_handler = AzureAdLogonLoginHandler
     login_service = Unicode(
 		os.environ.get('LOGIN_SERVICE', 'Azure AD'),
 		config=True,
