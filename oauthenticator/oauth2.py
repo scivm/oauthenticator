@@ -78,8 +78,13 @@ class OAuthLoginHandler(OAuth2Mixin, BaseHandler):
     _state = None
 
     def get_state(self):
+        app_log.info("in get_state OAuthLoginHandler")
+        attrs = vars(an)
+        for item in attrs.items()
+            app_log.info(item)
         next_url = original_next_url = self.get_argument('next', None)
         if next_url:
+            app_log.info("in next_url %r", next_url)
             # avoid browsers treating \ as /
             next_url = next_url.replace('\\', quote('\\'))
             # disallow hostname-having urls,
@@ -93,6 +98,7 @@ class OAuthLoginHandler(OAuth2Mixin, BaseHandler):
                     "Ignoring next_url %r, using %r", original_next_url, next_url
                 )
         if self._state is None:
+            app_log.info("self._state is None")
             self._state = _serialize_state(
                 {'state_id': uuid.uuid4().hex, 'next_url': next_url}
             )
