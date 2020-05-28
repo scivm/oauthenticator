@@ -113,6 +113,8 @@ class AzureAdOAuthenticator(OAuthenticator):
         resp_json = json.loads(resp.body.decode('utf8', 'replace'))
 
         app_log.info("Response %s", resp_json)
+        app_log.info(resp.headers)
+
         access_token = resp_json['access_token']
 
         id_token = resp_json['id_token']
