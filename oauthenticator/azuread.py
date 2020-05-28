@@ -28,7 +28,7 @@ class AzureAdOAuthLoginHandler(OAuthLoginHandler):
         return self._state
 
 class AzureAdOAuthenticator(OAuthenticator):
-    login_handler = AzureAdLogonLoginHandler
+    login_handler = AzureAdOAuthLoginHandler
     login_service = Unicode(
 		os.environ.get('LOGIN_SERVICE', 'Azure AD'),
 		config=True,
