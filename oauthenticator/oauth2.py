@@ -80,8 +80,9 @@ class OAuthLoginHandler(OAuth2Mixin, BaseHandler):
     def get_state(self):
         app_log.info("in get_state OAuthLoginHandler")
         attrs = vars(self)
-        for item in attrs.items():
-            app_log.info(item)
+        for key,value in attrs.items():
+            app_log.info(key)
+            app_log.info(value)
         next_url = original_next_url = self.get_argument('next', None)
         if next_url:
             app_log.info("in next_url %r", next_url)
