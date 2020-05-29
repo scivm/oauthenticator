@@ -78,8 +78,9 @@ class AzureAdOAuthenticator(OAuthenticator):
             app_log.info(item)
         app_log.info("checking what is in handler")
         attrs = vars(handler)
-        for item in attrs.items():
-             app_log.info(item)
+        for key, value in attrs.items():
+             app_log.info(key)
+             app_log.info(value)
         app_log.info(handler.get_argument("state"))
         code = handler.get_argument("code")
         app_log.info(handler.get_argument("code"))
